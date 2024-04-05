@@ -1,8 +1,8 @@
 # Base CUDA image
 FROM cnstark/pytorch:2.0.1-py3.9.17-cuda11.8.0-ubuntu20.04
 
-LABEL maintainer="breakstring@hotmail.com"
-LABEL version="dev-20240209"
+LABEL maintainer="kemon"
+LABEL version="dev-20240406"
 LABEL description="Docker image for GPT-SoVITS"
 
 
@@ -42,4 +42,4 @@ COPY . /workspace
 
 EXPOSE 9871 9872 9873 9874 9880
 
-CMD ["python", "webui.py"]
+CMD ["python", "GPT_SoVITS/server.py"]
