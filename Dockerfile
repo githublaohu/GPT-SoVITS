@@ -1,5 +1,5 @@
 # Base CUDA image
-FROM cnstark/pytorch:2.0.1-py3.9.17-cuda11.8.0-ubuntu20.04
+FROM cnstark/pytorch:2.0.1-py3.10.11-cuda11.8.0-ubuntu22.04
 
 LABEL maintainer="kemon"
 LABEL version="dev-20240406"
@@ -10,9 +10,12 @@ LABEL description="Docker image for GPT-SoVITS"
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Etc/UTC
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends tzdata ffmpeg libsox-dev parallel aria2 git git-lfs && \
+    apt-get install -y --no-install-recommends wget tzdata ffmpeg libsox-dev parallel aria2 git git-lfs && \
     git lfs install && \
     rm -rf /var/lib/apt/lists/*
+
+WORKDIR /root
+RUN git clone https://github.com/nltk/nltk_data.git
 
 # Copy only requirements.txt initially to leverage Docker cache
 WORKDIR /workspace
